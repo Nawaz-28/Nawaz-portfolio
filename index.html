@@ -1,2092 +1,2195 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- =====================================================
-         BASIC DOCUMENT INFORMATION
-    ====================================================== -->
+  <title>Nawaz A. | AI & Data Science</title>
 
-    <meta charset="UTF-8">
+  <meta
+    name="description"
+    content="Nawaz A. — B.Tech AI & Data Science student, developer and technology enthusiast."
+  />
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <meta name="description"
-          content="Nawaz — B.Tech Artificial Intelligence and Data Science student portfolio.">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
-    <meta name="author"
-          content="Nawaz">
+  <style>
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
 
-    <meta name="keywords"
-          content="Nawaz, AI, Data Science, Artificial Intelligence, Portfolio, Student, Developer, Python, GitHub">
+    :root {
+      --bg: #07090d;
+      --bg-soft: #0d1118;
+      --card: rgba(255,255,255,0.055);
+      --card-hover: rgba(255,255,255,0.09);
 
-    <meta name="theme-color"
-          content="#08090d">
+      --text: #f4f7fb;
+      --muted: #9ba5b5;
 
+      --accent: #7c5cff;
+      --accent-2: #00d4ff;
 
-    <!-- =====================================================
-         PAGE TITLE
-    ====================================================== -->
+      --border: rgba(255,255,255,0.10);
 
-    <title>
-        Nawaz — AI & Data Science Student
-    </title>
+      --shadow:
+        0 20px 70px rgba(0,0,0,0.45);
 
+      --radius: 24px;
+    }
 
-    <!-- =====================================================
-         FAVICON
-    ====================================================== -->
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-    <link rel="icon"
-          href="assets/favicon.png"
-          type="image/png">
+    html {
+      scroll-padding-top: 90px;
+    }
 
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(124,92,255,0.13), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(0,212,255,0.09), transparent 25%),
+        var(--bg);
 
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: 0.4s ease;
+    }
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    body.light {
+      --bg: #f5f7fb;
+      --bg-soft: #ffffff;
+      --card: rgba(0,0,0,0.045);
+      --card-hover: rgba(0,0,0,0.08);
+      --text: #10131a;
+      --muted: #5c6575;
+      --border: rgba(0,0,0,0.10);
+    }
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
+    button {
+      font-family: inherit;
+    }
 
+    section {
+      padding: 110px 7%;
+      position: relative;
+    }
 
-    <!-- =====================================================
-         ICON LIBRARY
-    ====================================================== -->
+    .container {
+      max-width: 1250px;
+      margin: auto;
+    }
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    /* =========================================================
+       CUSTOM CURSOR
+    ========================================================= */
 
+    .cursor {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--accent-2);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition:
+        width .2s,
+        height .2s,
+        background .2s;
+    }
 
-    <!-- =====================================================
-         MAIN STYLESHEET
-    ====================================================== -->
+    .cursor.active {
+      width: 40px;
+      height: 40px;
+      background: rgba(124,92,255,0.12);
+    }
 
-    <link rel="stylesheet"
-          href="style.css">
+    @media (max-width: 800px) {
+      .cursor {
+        display: none;
+      }
+    }
 
+    /* =========================================================
+       BACKGROUND
+    ========================================================= */
+
+    .grid-background {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        );
+
+      background-size: 55px 55px;
+
+      mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 85%
+      );
+    }
+
+    .orb {
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .14;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .orb.one {
+      background: var(--accent);
+      top: 10%;
+      left: -180px;
+    }
+
+    .orb.two {
+      background: var(--accent-2);
+      right: -180px;
+      top: 50%;
+    }
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      padding: 20px 7%;
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      background: rgba(7,9,13,0.65);
+      border-bottom: 1px solid var(--border);
+
+      transition: .3s;
+    }
+
+    body.light nav {
+      background: rgba(245,247,251,0.72);
+    }
+
+    .nav-inner {
+      max-width: 1250px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 500;
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .theme-btn {
+      width: 42px;
+      height: 42px;
+
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+
+      border-radius: 50%;
+      cursor: pointer;
+
+      transition: .3s;
+    }
+
+    .theme-btn:hover {
+      transform: rotate(20deg) scale(1.08);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      padding-top: 140px;
+    }
+
+    .hero-grid {
+      max-width: 1250px;
+      margin: auto;
+
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 8px 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 100px;
+
+      background: var(--card);
+
+      color: var(--muted);
+      font-size: .82rem;
+
+      margin-bottom: 25px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #39e58c;
+      box-shadow: 0 0 14px #39e58c;
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(
+        3.2rem,
+        7vw,
+        6.5rem
+      );
+
+      line-height: .98;
+      letter-spacing: -5px;
+
+      margin-bottom: 25px;
+    }
+
+    .gradient-text {
+      background:
+        linear-gradient(
+          100deg,
+          var(--accent),
+          var(--accent-2)
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .typing {
+      min-height: 35px;
+
+      font-size: 1.2rem;
+      color: var(--muted);
+
+      margin-bottom: 25px;
+    }
+
+    .hero-description {
+      max-width: 650px;
+
+      color: var(--muted);
+      font-size: 1.05rem;
+
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      padding: 13px 20px;
+
+      border-radius: 12px;
+      border: 1px solid var(--border);
+
+      font-size: .9rem;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: .3s;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(124,92,255,.2);
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--card-hover);
+      transform: translateY(-3px);
+    }
+
+    /* =========================================================
+       HERO CARD
+    ========================================================= */
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-card {
+      width: min(390px, 100%);
+      aspect-ratio: 1 / 1.15;
+
+      border: 1px solid var(--border);
+      border-radius: 35px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(124,92,255,.16),
+          rgba(0,212,255,.04)
+        ),
+        var(--card);
+
+      backdrop-filter: blur(25px);
+
+      box-shadow: var(--shadow);
+
+      position: relative;
+      overflow: hidden;
+
+      transform-style: preserve-3d;
+
+      transition: transform .15s;
+    }
+
+    .profile-card::before {
+      content: "";
+
+      position: absolute;
+      width: 260px;
+      height: 260px;
+
+      border-radius: 50%;
+
+      background: var(--accent);
+      filter: blur(80px);
+
+      opacity: .18;
+
+      top: -90px;
+      right: -90px;
+    }
+
+    .profile-content {
+      position: absolute;
+      inset: 25px;
+
+      border: 1px solid var(--border);
+      border-radius: 25px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding: 25px;
+
+      background: rgba(0,0,0,.12);
+    }
+
+    .initials {
+      font-family: "Space Grotesk";
+      font-size: 7rem;
+      font-weight: 800;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          var(--accent-2)
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      line-height: 1;
+    }
+
+    .card-bottom h3 {
+      font-family: "Space Grotesk";
+      font-size: 1.7rem;
+    }
+
+    .card-bottom p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .floating-tag {
+      position: absolute;
+
+      padding: 10px 14px;
+
+      border-radius: 12px;
+
+      background: rgba(10,12,18,.75);
+      border: 1px solid var(--border);
+
+      backdrop-filter: blur(15px);
+
+      font-size: .78rem;
+      font-weight: 600;
+
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .tag-one {
+      top: 17%;
+      right: -30px;
+    }
+
+    .tag-two {
+      bottom: 20%;
+      left: -35px;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-13px);
+      }
+    }
+
+    /* =========================================================
+       SECTION HEADER
+    ========================================================= */
+
+    .section-header {
+      margin-bottom: 55px;
+    }
+
+    .section-label {
+      color: var(--accent-2);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: "Space Grotesk";
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      letter-spacing: -2px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 650px;
+      margin-top: 14px;
+    }
+
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .glass-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 30px;
+      backdrop-filter: blur(18px);
+      transition: .35s;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-7px);
+      background: var(--card-hover);
+    }
+
+    .glass-card h3 {
+      font-family: "Space Grotesk";
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    .glass-card p {
+      color: var(--muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Space Grotesk";
+      font-size: 2rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* =========================================================
+       SKILLS
+    ========================================================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+    }
+
+    .skill {
+      padding: 25px 20px;
+
+      border: 1px solid var(--border);
+      background: var(--card);
+
+      border-radius: 18px;
+
+      transition: .3s;
+    }
+
+    .skill:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124,92,255,.45);
+    }
+
+    .skill-icon {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+    }
+
+    .skill h4 {
+      margin-bottom: 5px;
+    }
+
+    .skill p {
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* =========================================================
+       PROJECTS
+    ========================================================= */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .project {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 330px;
+
+      padding: 28px;
+
+      border-radius: 24px;
+
+      border: 1px solid var(--border);
+      background: var(--card);
+
+      display: flex;
+      flex-direction: column;
+
+      transition: .35s;
+    }
+
+    .project:hover {
+      transform: translateY(-9px);
+      background: var(--card-hover);
+    }
+
+    .project-number {
+      color: var(--accent-2);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .project h3 {
+      font-family: "Space Grotesk";
+      font-size: 1.5rem;
+      margin-top: 18px;
+      margin-bottom: 12px;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 25px;
+    }
+
+    .tech span {
+      padding: 6px 10px;
+
+      border-radius: 100px;
+
+      background: rgba(124,92,255,.10);
+      border: 1px solid rgba(124,92,255,.2);
+
+      font-size: .7rem;
+    }
+
+    .project-link {
+      margin-top: 18px;
+      color: var(--accent-2);
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       TIMELINE
+    ========================================================= */
+
+    .timeline {
+      max-width: 850px;
+    }
+
+    .timeline-item {
+      position: relative;
+
+      padding: 0 0 45px 35px;
+
+      border-left: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child {
+      border-left: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+
+      width: 12px;
+      height: 12px;
+
+      border-radius: 50%;
+
+      background: var(--accent);
+
+      left: -6px;
+      top: 5px;
+
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .timeline-year {
+      color: var(--accent-2);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .timeline h3 {
+      font-family: "Space Grotesk";
+      font-size: 1.4rem;
+      margin: 5px 0;
+    }
+
+    .timeline p {
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       GITHUB CTA
+    ========================================================= */
+
+    .github-card {
+      text-align: center;
+
+      padding: 70px 30px;
+
+      border-radius: 30px;
+
+      border: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(124,92,255,.18),
+          transparent 55%
+        ),
+        var(--card);
+    }
+
+    .github-card h2 {
+      font-family: "Space Grotesk";
+      font-size: clamp(2rem,5vw,4rem);
+      letter-spacing: -2px;
+    }
+
+    .github-card p {
+      max-width: 600px;
+      margin: 15px auto 25px;
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 25px;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      padding: 15px;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      background: var(--card);
+
+      transition: .3s;
+    }
+
+    .contact-link:hover {
+      transform: translateX(5px);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 10px;
+
+      background: rgba(124,92,255,.12);
+    }
+
+    .contact-link small {
+      display: block;
+      color: var(--muted);
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+
+      border: 1px solid var(--border);
+      outline: none;
+
+      background: var(--card);
+      color: var(--text);
+
+      border-radius: 13px;
+
+      padding: 15px;
+
+      font-family: inherit;
+
+      transition: .3s;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124,92,255,.10);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      padding: 35px 7%;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      max-width: 1250px;
+      margin: auto;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 18px;
+    }
+
+    .footer-socials a:hover {
+      color: var(--text);
+    }
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 1000px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        justify-content: flex-start;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 750px) {
+
+      section {
+        padding: 80px 6%;
+      }
+
+      nav {
+        padding: 17px 6%;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+
+        top: 75px;
+        left: 6%;
+        right: 6%;
+
+        display: none;
+        flex-direction: column;
+
+        padding: 20px;
+
+        background: rgba(12,15,21,.95);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+
+        backdrop-filter: blur(20px);
+      }
+
+      body.light .nav-links {
+        background: rgba(255,255,255,.95);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .about-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .profile-card {
+        width: 320px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .profile-card {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 
 <body>
 
+  <!-- BACKGROUND -->
+  <div class="grid-background"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
 
-<!-- =========================================================
-     PAGE LOADER
-========================================================== -->
+  <!-- CURSOR -->
+  <div class="cursor"></div>
 
-<div class="page-loader" id="pageLoader">
 
-    <div class="loader-content">
+  <!-- =======================================================
+       NAVBAR
+  ======================================================== -->
 
-        <div class="loader-logo">
-            N.
-        </div>
+  <nav>
 
-        <div class="loader-line"></div>
+    <div class="nav-inner">
 
-        <p>
-            Loading portfolio...
-        </p>
+      <a href="#home" class="logo">
+        N<span>.</span>A
+      </a>
+
+      <div class="nav-links" id="navLinks">
+
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#journey">Journey</a>
+        <a href="#contact">Contact</a>
+
+        <button
+          class="theme-btn"
+          id="themeBtn"
+          aria-label="Toggle theme"
+        >
+          ☀
+        </button>
+
+      </div>
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
 
     </div>
 
-</div>
+  </nav>
 
 
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
 
-<!-- =========================================================
-     BACKGROUND EFFECTS
-========================================================== -->
+  <main>
 
-<div class="background-effects">
+    <section class="hero" id="home">
 
-    <div class="gradient-orb orb-one"></div>
+      <div class="hero-grid">
 
-    <div class="gradient-orb orb-two"></div>
+        <div class="hero-content reveal">
 
-    <div class="gradient-orb orb-three"></div>
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+            Open to learning & opportunities
+          </div>
 
-    <div class="grid-background"></div>
+          <h1>
+            Hi, I'm
+            <span class="gradient-text">
+              Nawaz.
+            </span>
+          </h1>
 
-</div>
+          <div class="typing">
+            I'm a <span id="typingText"></span>
+          </div>
 
+          <p class="hero-description">
+            I'm a first-year B.Tech Artificial Intelligence &
+            Data Science student at Dhaanish College of Engineering,
+            exploring technology, programming, AI and data-driven
+            solutions.
+          </p>
 
+          <div class="buttons">
 
-<!-- =========================================================
-     NAVIGATION BAR
-========================================================== -->
-
-<header class="site-header">
-
-    <div class="container">
-
-        <nav class="navbar">
-
-
-            <!-- LOGO -->
-
-            <a href="#home"
-               class="logo"
-               aria-label="Nawaz Home">
-
-                <span class="logo-mark">
-                    N
-                </span>
-
-                <span class="logo-text">
-                    Nawaz<span>.</span>
-                </span>
-
+            <a
+              href="#projects"
+              class="btn btn-primary"
+            >
+              Explore My Work →
             </a>
 
-
-            <!-- NAVIGATION LINKS -->
-
-            <div class="nav-menu"
-                 id="navMenu">
-
-                <a href="#home"
-                   class="nav-link active">
-
-                    <span>01</span>
-                    Home
-
-                </a>
-
-                <a href="#about"
-                   class="nav-link">
-
-                    <span>02</span>
-                    About
-
-                </a>
-
-                <a href="#skills"
-                   class="nav-link">
-
-                    <span>03</span>
-                    Skills
-
-                </a>
-
-                <a href="#projects"
-                   class="nav-link">
-
-                    <span>04</span>
-                    Projects
-
-                </a>
-
-                <a href="#education"
-                   class="nav-link">
-
-                    <span>05</span>
-                    Education
-
-                </a>
-
-                <a href="#contact"
-                   class="nav-link">
-
-                    <span>06</span>
-                    Contact
-
-                </a>
-
-            </div>
-
-
-            <!-- NAV ACTION -->
-
-            <div class="nav-action">
-
-                <a href="#contact"
-                   class="nav-contact">
-
-                    Let's Talk
-
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                </a>
-
-            </div>
-
-
-            <!-- MOBILE MENU -->
-
-            <button class="mobile-menu-button"
-                    id="mobileMenuButton"
-                    aria-label="Open navigation menu">
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </button>
-
-        </nav>
-
-    </div>
-
-</header>
-
-
-
-
-<!-- =========================================================
-     MAIN CONTENT
-========================================================== -->
-
-<main>
-
-
-
-<!-- =========================================================
-     HERO SECTION
-========================================================== -->
-
-<section class="hero-section"
-         id="home">
-
-    <div class="container">
-
-        <div class="hero-grid">
-
-
-            <!-- HERO CONTENT -->
-
-            <div class="hero-content">
-
-
-                <div class="hero-status">
-
-                    <span class="status-dot"></span>
-
-                    <span>
-                        Available for learning & collaboration
-                    </span>
-
-                </div>
-
-
-
-                <p class="hero-intro">
-                    HELLO, I'M
-                </p>
-
-
-
-                <h1 class="hero-title">
-
-                    Nawaz
-
-                    <span class="hero-title-dot">
-                        .
-                    </span>
-
-                </h1>
-
-
-
-                <div class="hero-role">
-
-                    <span>
-                        B.Tech
-                    </span>
-
-                    <span class="role-divider">
-                        /
-                    </span>
-
-                    <span>
-                        Artificial Intelligence
-                    </span>
-
-                    <span class="role-divider">
-                        /
-                    </span>
-
-                    <span>
-                        Data Science
-                    </span>
-
-                </div>
-
-
-
-                <p class="hero-description">
-
-                    I'm a first-year B.Tech Artificial Intelligence
-                    and Data Science student at
-                    <strong>
-                        Dhaanish College of Engineering
-                    </strong>.
-
-                    I'm passionate about technology, programming,
-                    artificial intelligence, data and building
-                    meaningful digital experiences.
-
-                </p>
-
-
-
-                <!-- HERO BUTTONS -->
-
-                <div class="hero-actions">
-
-                    <a href="#projects"
-                       class="button button-primary">
-
-                        <span>
-                            Explore My Work
-                        </span>
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </a>
-
-
-                    <a href="#contact"
-                       class="button button-outline">
-
-                        <span>
-                            Contact Me
-                        </span>
-
-                    </a>
-
-                </div>
-
-
-
-                <!-- SOCIAL LINKS -->
-
-                <div class="hero-socials">
-
-                    <span class="social-label">
-                        FIND ME ON
-                    </span>
-
-
-                    <a href="https://github.com/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="GitHub">
-
-                        <i class="fa-brands fa-github"></i>
-
-                    </a>
-
-
-                    <a href="https://www.linkedin.com/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="LinkedIn">
-
-                        <i class="fa-brands fa-linkedin-in"></i>
-
-                    </a>
-
-
-                    <a href="mailto:yourmail@gmail.com"
-                       aria-label="Email">
-
-                        <i class="fa-regular fa-envelope"></i>
-
-                    </a>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- HERO VISUAL -->
-
-            <div class="hero-visual">
-
-
-                <div class="visual-frame">
-
-
-                    <!-- PROFILE IMAGE -->
-
-                    <div class="profile-image-wrapper">
-
-                        <!--
-                        Replace this image with your own photo.
-
-                        Example:
-                        assets/profile.jpg
-                        -->
-
-                        <img src="assets/profile.jpg"
-                             alt="Portrait of Nawaz"
-                             class="profile-image">
-
-                    </div>
-
-
-
-                    <!-- DECORATIVE CIRCLE -->
-
-                    <div class="visual-circle circle-large"></div>
-
-                    <div class="visual-circle circle-small"></div>
-
-
-
-                    <!-- FLOATING CARD -->
-
-                    <div class="floating-info floating-top">
-
-                        <span class="floating-icon">
-                            <i class="fa-solid fa-code"></i>
-                        </span>
-
-                        <div>
-
-                            <small>
-                                CURRENT FOCUS
-                            </small>
-
-                            <strong>
-                                Programming
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- FLOATING CARD -->
-
-                    <div class="floating-info floating-bottom">
-
-                        <span class="floating-icon">
-                            <i class="fa-solid fa-brain"></i>
-                        </span>
-
-                        <div>
-
-                            <small>
-                                EXPLORING
-                            </small>
-
-                            <strong>
-                                Artificial Intelligence
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- EXPERIENCE BADGE -->
-
-                    <div class="experience-badge">
-
-                        <strong>
-                            01
-                        </strong>
-
-                        <span>
-                            YEAR<br>
-                            STUDENT
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-            </div>
+            <a
+              href="https://github.com/Nawaz-28"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              GitHub ↗
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/nawaz-a-0600b8433"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              LinkedIn ↗
+            </a>
+
+          </div>
 
         </div>
 
 
-        <!-- SCROLL INDICATOR -->
+        <div class="hero-visual reveal">
 
-        <a href="#about"
-           class="scroll-indicator">
+          <div
+            class="profile-card"
+            id="profileCard"
+          >
 
-            <span>
-                Scroll to explore
+            <div class="profile-content">
+
+              <div>
+
+                <div class="initials">
+                  NS
+                </div>
+
+                <p
+                  style="
+                    color:var(--muted);
+                    margin-top:15px;
+                  "
+                >
+                  AI × Data × Code
+                </p>
+
+              </div>
+
+              <div class="card-bottom">
+
+                <h3>
+                  Nawaz A.
+                </h3>
+
+                <p>
+                  B.Tech AI & Data Science
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="floating-tag tag-one">
+              🤖 AI / ML
+            </div>
+
+            <div class="floating-tag tag-two">
+              💻 Developer
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            01 — About
+          </div>
+
+          <h2 class="section-title">
+            Building my future,
+            <span class="gradient-text">
+              one project at a time.
             </span>
+          </h2>
 
-            <i class="fa-solid fa-arrow-down"></i>
-
-        </a>
-
-    </div>
-
-</section>
-
-
-
-
-<!-- =========================================================
-     MARQUEE / TECHNOLOGY STRIP
-========================================================== -->
-
-<section class="tech-strip">
-
-    <div class="tech-track">
-
-        <span>
-            ARTIFICIAL INTELLIGENCE
-        </span>
-
-        <span class="separator">
-            ✦
-        </span>
-
-        <span>
-            DATA SCIENCE
-        </span>
-
-        <span class="separator">
-            ✦
-        </span>
-
-        <span>
-            PYTHON
-        </span>
-
-        <span class="separator">
-            ✦
-        </span>
-
-        <span>
-            WEB DEVELOPMENT
-        </span>
-
-        <span class="separator">
-            ✦
-        </span>
-
-        <span>
-            MACHINE LEARNING
-        </span>
-
-        <span class="separator">
-            ✦
-        </span>
-
-        <span>
-            PROBLEM SOLVING
-        </span>
-
-        <span class="separator">
-            ✦
-        </span>
-
-    </div>
-
-</section>
-
-
-
-
-<!-- =========================================================
-     ABOUT SECTION
-========================================================== -->
-
-<section class="section about-section"
-         id="about">
-
-    <div class="container">
-
-
-        <!-- SECTION HEADER -->
-
-        <div class="section-header">
-
-            <div class="section-number">
-                02
-            </div>
-
-            <div>
-
-                <p class="section-label">
-                    ABOUT ME
-                </p>
-
-                <h2 class="section-title">
-
-                    A curious mind
-                    <span>
-                        building for the future.
-                    </span>
-
-                </h2>
-
-            </div>
+          <p class="section-description">
+            I'm currently building my foundation in computer
+            science, artificial intelligence and data science.
+            My goal is to turn ideas into useful technology.
+          </p>
 
         </div>
-
 
 
         <div class="about-grid">
 
+          <div class="glass-card reveal">
 
-            <!-- ABOUT TEXT -->
+            <h3>
+              👋 Who I Am
+            </h3>
 
-            <div class="about-main">
+            <p>
+              I'm Nawaz, a first-year B.Tech AI & Data Science
+              student at Dhaanish College of Engineering.
+              I'm passionate about programming, artificial
+              intelligence, data and modern technology.
+            </p>
 
-                <p class="large-text">
+            <div class="stats">
 
-                    I'm Nawaz — a first-year B.Tech student
-                    specializing in Artificial Intelligence and
-                    Data Science at Dhaanish College of Engineering.
+              <div class="stat">
+                <strong>01</strong>
+                <span>Year of B.Tech</span>
+              </div>
 
-                </p>
-
-
-                <p>
-
-                    My journey into technology is just beginning,
-                    but I'm deeply interested in understanding how
-                    software, artificial intelligence and data can
-                    be used to solve real-world problems.
-
-                </p>
-
-
-                <p>
-
-                    At the moment, I'm focusing on strengthening
-                    my programming fundamentals, learning modern
-                    development tools and experimenting with small
-                    projects that help me turn concepts into
-                    practical experience.
-
-                </p>
-
-
-                <p>
-
-                    I believe that good technology starts with
-                    curiosity, continuous learning and the courage
-                    to build something from scratch.
-
-                </p>
-
-
-                <div class="about-signature">
-
-                    Nawaz<span>.</span>
-
-                </div>
+              <div class="stat">
+                <strong>AI</strong>
+                <span>Field of Study</span>
+              </div>
 
             </div>
 
+          </div>
 
 
-            <!-- ABOUT STATS -->
+          <div class="glass-card reveal">
 
-            <div class="about-stats">
+            <h3>
+              🎯 Current Focus
+            </h3>
 
+            <p>
+              Right now I'm focused on strengthening my
+              programming fundamentals, learning web
+              development and exploring the foundations of
+              artificial intelligence and machine learning.
+            </p>
 
-                <div class="stat-card">
+            <div class="tech">
 
-                    <span class="stat-number">
-                        01
-                    </span>
-
-                    <span class="stat-label">
-                        Year of<br>
-                        B.Tech
-                    </span>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <span class="stat-number">
-                        AI
-                    </span>
-
-                    <span class="stat-label">
-                        Artificial<br>
-                        Intelligence
-                    </span>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <span class="stat-number">
-                        DS
-                    </span>
-
-                    <span class="stat-label">
-                        Data<br>
-                        Science
-                    </span>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <span class="stat-number">
-                        ∞
-                    </span>
-
-                    <span class="stat-label">
-                        Always<br>
-                        Learning
-                    </span>
-
-                </div>
-
+              <span>Programming</span>
+              <span>AI</span>
+              <span>Data Science</span>
+              <span>Web Development</span>
 
             </div>
+
+          </div>
 
         </div>
 
-    </div>
+      </div>
 
-</section>
-
-
+    </section>
 
 
-<!-- =========================================================
-     SKILLS SECTION
-========================================================== -->
+    <!-- =====================================================
+         SKILLS
+    ====================================================== -->
 
-<section class="section skills-section"
-         id="skills">
+    <section id="skills">
 
-    <div class="container">
+      <div class="container">
 
+        <div class="section-header reveal">
 
-        <div class="section-header">
+          <div class="section-label">
+            02 — Skills
+          </div>
 
-            <div class="section-number">
-                03
-            </div>
-
-            <div>
-
-                <p class="section-label">
-                    SKILLS & TECHNOLOGIES
-                </p>
-
-                <h2 class="section-title">
-
-                    Tools I'm
-                    <span>
-                        learning & exploring.
-                    </span>
-
-                </h2>
-
-            </div>
+          <h2 class="section-title">
+            Technologies I'm
+            <span class="gradient-text">
+              exploring.
+            </span>
+          </h2>
 
         </div>
 
 
-
-        <div class="skills-layout">
-
-
-            <!-- SKILL INTRO -->
-
-            <div class="skills-intro">
-
-                <p>
-
-                    As a first-year student, I'm continuously
-                    expanding my technical foundation.
-
-                </p>
-
-                <p>
-
-                    These are the technologies and areas I'm
-                    currently learning or exploring.
-
-                </p>
-
-
-                <div class="skill-note">
-
-                    <i class="fa-solid fa-lightbulb"></i>
-
-                    <span>
-                        Learning never stops.
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- SKILL LIST -->
-
-            <div class="skills-list">
-
-
-                <div class="skill-item">
-
-                    <div class="skill-icon">
-                        <i class="fa-brands fa-python"></i>
-                    </div>
-
-                    <div class="skill-details">
-
-                        <div class="skill-heading">
-
-                            <h3>
-                                Python
-                            </h3>
-
-                            <span>
-                                Learning
-                            </span>
-
-                        </div>
-
-                        <p>
-                            Programming & problem solving
-                        </p>
-
-                        <div class="skill-bar">
-                            <span style="width: 70%;"></span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="skill-item">
-
-                    <div class="skill-icon">
-                        <i class="fa-brands fa-html5"></i>
-                    </div>
-
-                    <div class="skill-details">
-
-                        <div class="skill-heading">
-
-                            <h3>
-                                HTML
-                            </h3>
-
-                            <span>
-                                Learning
-                            </span>
-
-                        </div>
-
-                        <p>
-                            Semantic web structure
-                        </p>
-
-                        <div class="skill-bar">
-                            <span style="width: 80%;"></span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="skill-item">
-
-                    <div class="skill-icon">
-                        <i class="fa-brands fa-css3-alt"></i>
-                    </div>
-
-                    <div class="skill-details">
-
-                        <div class="skill-heading">
-
-                            <h3>
-                                CSS
-                            </h3>
-
-                            <span>
-                                Learning
-                            </span>
-
-                        </div>
-
-                        <p>
-                            Responsive & modern design
-                        </p>
-
-                        <div class="skill-bar">
-                            <span style="width: 70%;"></span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="skill-item">
-
-                    <div class="skill-icon">
-                        <i class="fa-brands fa-js"></i>
-                    </div>
-
-                    <div class="skill-details">
-
-                        <div class="skill-heading">
-
-                            <h3>
-                                JavaScript
-                            </h3>
-
-                            <span>
-                                Exploring
-                            </span>
-
-                        </div>
-
-                        <p>
-                            Interactive web experiences
-                        </p>
-
-                        <div class="skill-bar">
-                            <span style="width: 45%;"></span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="skill-item">
-
-                    <div class="skill-icon">
-                        <i class="fa-solid fa-brain"></i>
-                    </div>
-
-                    <div class="skill-details">
-
-                        <div class="skill-heading">
-
-                            <h3>
-                                Artificial Intelligence
-                            </h3>
-
-                            <span>
-                                Exploring
-                            </span>
-
-                        </div>
-
-                        <p>
-                            AI concepts & fundamentals
-                        </p>
-
-                        <div class="skill-bar">
-                            <span style="width: 35%;"></span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="skill-item">
-
-                    <div class="skill-icon">
-                        <i class="fa-solid fa-chart-simple"></i>
-                    </div>
-
-                    <div class="skill-details">
-
-                        <div class="skill-heading">
-
-                            <h3>
-                                Data Science
-                            </h3>
-
-                            <span>
-                                Exploring
-                            </span>
-
-                        </div>
-
-                        <p>
-                            Data analysis & visualization
-                        </p>
-
-                        <div class="skill-bar">
-                            <span style="width: 30%;"></span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
+        <div class="skills-grid">
+
+          <div class="skill reveal">
+            <div class="skill-icon">🐍</div>
+            <h4>Python</h4>
+            <p>Programming & problem solving</p>
+          </div>
+
+          <div class="skill reveal">
+            <div class="skill-icon">🌐</div>
+            <h4>HTML</h4>
+            <p>Modern web structure</p>
+          </div>
+
+          <div class="skill reveal">
+            <div class="skill-icon">🎨</div>
+            <h4>CSS</h4>
+            <p>Responsive UI design</p>
+          </div>
+
+          <div class="skill reveal">
+            <div class="skill-icon">⚡</div>
+            <h4>JavaScript</h4>
+            <p>Interactive web experiences</p>
+          </div>
+
+          <div class="skill reveal">
+            <div class="skill-icon">📊</div>
+            <h4>Data Science</h4>
+            <p>Data analysis foundations</p>
+          </div>
+
+          <div class="skill reveal">
+            <div class="skill-icon">🤖</div>
+            <h4>AI / ML</h4>
+            <p>Exploring intelligent systems</p>
+          </div>
+
+          <div class="skill reveal">
+            <div class="skill-icon">🐙</div>
+            <h4>Git & GitHub</h4>
+            <p>Version control & projects</p>
+          </div>
+
+          <div class="skill reveal">
+            <div class="skill-icon">🧠</div>
+            <h4>Problem Solving</h4>
+            <p>Logical thinking & algorithms</p>
+          </div>
 
         </div>
 
-    </div>
+      </div>
 
-</section>
-
-
+    </section>
 
 
-<!-- =========================================================
-     PROJECTS SECTION
-========================================================== -->
+    <!-- =====================================================
+         PROJECTS
+    ====================================================== -->
 
-<section class="section projects-section"
-         id="projects">
+    <section id="projects">
 
-    <div class="container">
+      <div class="container">
 
+        <div class="section-header reveal">
 
-        <div class="section-header">
+          <div class="section-label">
+            03 — Projects
+          </div>
 
-            <div class="section-number">
-                04
-            </div>
+          <h2 class="section-title">
+            Things I'm
+            <span class="gradient-text">
+              building.
+            </span>
+          </h2>
 
-            <div>
-
-                <p class="section-label">
-                    SELECTED WORK
-                </p>
-
-                <h2 class="section-title">
-
-                    Ideas becoming
-                    <span>
-                        projects.
-                    </span>
-
-                </h2>
-
-            </div>
+          <p class="section-description">
+            As I continue learning, this section will grow with
+            projects, experiments and real-world applications.
+          </p>
 
         </div>
-
 
 
         <div class="projects-grid">
 
+          <!-- PROJECT 01 -->
 
-            <!-- PROJECT 01 -->
+          <article class="project reveal">
 
-            <article class="project-card project-featured">
-
-                <div class="project-top">
-
-                    <span class="project-number">
-                        01
-                    </span>
-
-                    <a href="#"
-                       class="project-arrow">
-
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                    </a>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <p class="project-category">
-                        WEB DEVELOPMENT
-                    </p>
-
-                    <h3>
-                        Personal Portfolio
-                    </h3>
-
-                    <p>
-
-                        A modern responsive portfolio website
-                        created to showcase my journey,
-                        projects, skills and learning experience.
-
-                    </p>
-
-                </div>
-
-
-                <div class="project-footer">
-
-                    <div class="project-tags">
-
-                        <span>
-                            HTML
-                        </span>
-
-                        <span>
-                            CSS
-                        </span>
-
-                        <span>
-                            JavaScript
-                        </span>
-
-                        <span>
-                            GitHub Pages
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PROJECT 02 -->
-
-            <article class="project-card">
-
-                <div class="project-top">
-
-                    <span class="project-number">
-                        02
-                    </span>
-
-                    <a href="#"
-                       class="project-arrow">
-
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                    </a>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <p class="project-category">
-                        ARTIFICIAL INTELLIGENCE
-                    </p>
-
-                    <h3>
-                        AI Project
-                    </h3>
-
-                    <p>
-
-                        An upcoming AI project created while
-                        exploring the fundamentals of artificial
-                        intelligence and machine learning.
-
-                    </p>
-
-                </div>
-
-
-                <div class="project-footer">
-
-                    <div class="project-tags">
-
-                        <span>
-                            Python
-                        </span>
-
-                        <span>
-                            AI
-                        </span>
-
-                        <span>
-                            ML
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PROJECT 03 -->
-
-            <article class="project-card">
-
-                <div class="project-top">
-
-                    <span class="project-number">
-                        03
-                    </span>
-
-                    <a href="#"
-                       class="project-arrow">
-
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                    </a>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <p class="project-category">
-                        DATA SCIENCE
-                    </p>
-
-                    <h3>
-                        Data Exploration
-                    </h3>
-
-                    <p>
-
-                        An upcoming project focused on exploring
-                        datasets, visualizing information and
-                        discovering meaningful patterns.
-
-                    </p>
-
-                </div>
-
-
-                <div class="project-footer">
-
-                    <div class="project-tags">
-
-                        <span>
-                            Python
-                        </span>
-
-                        <span>
-                            Data
-                        </span>
-
-                        <span>
-                            Analysis
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PROJECT 04 -->
-
-            <article class="project-card">
-
-                <div class="project-top">
-
-                    <span class="project-number">
-                        04
-                    </span>
-
-                    <a href="#"
-                       class="project-arrow">
-
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                    </a>
-
-                </div>
-
-
-                <div class="project-content">
-
-                    <p class="project-category">
-                        FUTURE PROJECT
-                    </p>
-
-                    <h3>
-                        Coming Soon
-                    </h3>
-
-                    <p>
-
-                        More projects will appear here as I
-                        continue learning and building.
-
-                    </p>
-
-                </div>
-
-
-                <div class="project-footer">
-
-                    <div class="project-tags">
-
-                        <span>
-                            Learning
-                        </span>
-
-                        <span>
-                            Building
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-
-<!-- =========================================================
-     EDUCATION SECTION
-========================================================== -->
-
-<section class="section education-section"
-         id="education">
-
-    <div class="container">
-
-
-        <div class="section-header">
-
-            <div class="section-number">
-                05
+            <div class="project-number">
+              PROJECT 01
             </div>
 
-            <div>
+            <h3>
+              Personal Portfolio
+            </h3>
 
-                <p class="section-label">
-                    EDUCATION
-                </p>
+            <p>
+              A responsive personal portfolio created to
+              showcase my journey, skills, projects and
+              professional profiles.
+            </p>
 
-                <h2 class="section-title">
-
-                    Where my
-                    <span>
-                        journey started.
-                    </span>
-
-                </h2>
-
+            <div class="tech">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
             </div>
 
-        </div>
-
-
-
-        <div class="education-card">
-
-
-            <div class="education-date">
-
-                <span>
-                    2026
-                </span>
-
-                <span>
-                    PRESENT
-                </span>
-
-            </div>
-
-
-
-            <div class="education-line">
-
-                <div class="education-dot"></div>
-
-            </div>
-
-
-
-            <div class="education-content">
-
-                <p class="education-level">
-                    BACHELOR OF TECHNOLOGY
-                </p>
-
-                <h3>
-                    Artificial Intelligence
-                    & Data Science
-                </h3>
-
-                <h4>
-                    Dhaanish College of Engineering
-                </h4>
-
-                <p>
-
-                    Currently pursuing my first year of B.Tech,
-                    building strong foundations in programming,
-                    mathematics, computer science, artificial
-                    intelligence and data science.
-
-                </p>
-
-
-                <div class="education-tags">
-
-                    <span>
-                        B.Tech
-                    </span>
-
-                    <span>
-                        AI & DS
-                    </span>
-
-                    <span>
-                        1st Year
-                    </span>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-
-<!-- =========================================================
-     LEARNING JOURNEY
-========================================================== -->
-
-<section class="section journey-section">
-
-    <div class="container">
-
-
-        <div class="section-header">
-
-            <div class="section-number">
-                06
-            </div>
-
-            <div>
-
-                <p class="section-label">
-                    LEARNING JOURNEY
-                </p>
-
-                <h2 class="section-title">
-
-                    Currently
-                    <span>
-                        exploring.
-                    </span>
-
-                </h2>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="journey-grid">
-
-
-            <div class="journey-card">
-
-                <span class="journey-icon">
-                    <i class="fa-solid fa-terminal"></i>
-                </span>
-
-                <span class="journey-number">
-                    01
-                </span>
-
-                <h3>
-                    Programming
-                </h3>
-
-                <p>
-                    Strengthening programming fundamentals,
-                    logical thinking and problem-solving skills.
-                </p>
-
-            </div>
-
-
-
-            <div class="journey-card">
-
-                <span class="journey-icon">
-                    <i class="fa-solid fa-brain"></i>
-                </span>
-
-                <span class="journey-number">
-                    02
-                </span>
-
-                <h3>
-                    Artificial Intelligence
-                </h3>
-
-                <p>
-                    Exploring AI concepts and understanding
-                    how intelligent systems are developed.
-                </p>
-
-            </div>
-
-
-
-            <div class="journey-card">
-
-                <span class="journey-icon">
-                    <i class="fa-solid fa-chart-line"></i>
-                </span>
-
-                <span class="journey-number">
-                    03
-                </span>
-
-                <h3>
-                    Data Science
-                </h3>
-
-                <p>
-                    Learning how data can be processed,
-                    analyzed and transformed into insights.
-                </p>
-
-            </div>
-
-
-
-            <div class="journey-card">
-
-                <span class="journey-icon">
-                    <i class="fa-solid fa-globe"></i>
-                </span>
-
-                <span class="journey-number">
-                    04
-                </span>
-
-                <h3>
-                    Web Development
-                </h3>
-
-                <p>
-                    Building responsive websites and
-                    experimenting with modern UI design.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-
-<!-- =========================================================
-     ACHIEVEMENTS / GOALS
-========================================================== -->
-
-<section class="section goals-section">
-
-    <div class="container">
-
-
-        <div class="goals-panel">
-
-
-            <div class="goals-content">
-
-                <p class="section-label">
-                    MY DIRECTION
-                </p>
-
-                <h2>
-
-                    Learn.
-                    Build.
-                    <span>
-                        Improve.
-                    </span>
-
-                </h2>
-
-                <p>
-
-                    I'm currently at the beginning of my
-                    engineering journey. My focus is not
-                    simply on collecting technologies,
-                    but on understanding them deeply and
-                    using them to create useful things.
-
-                </p>
-
-            </div>
-
-
-
-            <div class="goals-list">
-
-
-                <div class="goal-item">
-
-                    <span>
-                        01
-                    </span>
-
-                    <strong>
-                        Build strong fundamentals
-                    </strong>
-
-                </div>
-
-
-                <div class="goal-item">
-
-                    <span>
-                        02
-                    </span>
-
-                    <strong>
-                        Create real-world projects
-                    </strong>
-
-                </div>
-
-
-                <div class="goal-item">
-
-                    <span>
-                        03
-                    </span>
-
-                    <strong>
-                        Explore AI & Machine Learning
-                    </strong>
-
-                </div>
-
-
-                <div class="goal-item">
-
-                    <span>
-                        04
-                    </span>
-
-                    <strong>
-                        Grow as a developer
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-
-<!-- =========================================================
-     GITHUB SECTION
-========================================================== -->
-
-<section class="section github-section">
-
-    <div class="container">
-
-
-        <div class="github-panel">
-
-
-            <div class="github-icon">
-
-                <i class="fa-brands fa-github"></i>
-
-            </div>
-
-
-            <div class="github-content">
-
-                <p class="section-label">
-                    OPEN SOURCE
-                </p>
-
-                <h2>
-                    Explore my
-                    <span>
-                        GitHub.
-                    </span>
-                </h2>
-
-                <p>
-
-                    Follow my learning journey, experiments,
-                    projects and code as I continue developing
-                    my technical skills.
-
-                </p>
-
-            </div>
-
-
-            <a href="https://github.com/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="github-button">
-
-                Visit GitHub
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
+            <a
+              href="https://github.com/Nawaz-28"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+            >
+              View on GitHub →
             </a>
 
-
-        </div>
-
-    </div>
-
-</section>
+          </article>
 
 
+          <!-- PROJECT 02 -->
 
+          <article class="project reveal">
 
-<!-- =========================================================
-     CONTACT SECTION
-========================================================== -->
-
-<section class="contact-section"
-         id="contact">
-
-    <div class="container">
-
-
-        <div class="contact-wrapper">
-
-
-            <div class="contact-intro">
-
-                <p class="section-label">
-                    CONTACT
-                </p>
-
-                <h2>
-
-                    Let's create
-                    <span>
-                        something meaningful.
-                    </span>
-
-                </h2>
-
-                <p>
-
-                    Whether it's a project idea, a learning
-                    opportunity or simply a conversation about
-                    technology, feel free to reach out.
-
-                </p>
-
+            <div class="project-number">
+              PROJECT 02
             </div>
 
-
-
-            <div class="contact-details">
-
-
-                <a href="mailto:yourmail@gmail.com"
-                   class="contact-card">
-
-                    <span class="contact-icon">
-
-                        <i class="fa-regular fa-envelope"></i>
-
-                    </span>
-
-                    <span>
-
-                        <small>
-                            EMAIL
-                        </small>
-
-                        <strong>
-                            yourmail@gmail.com
-                        </strong>
-
-                    </span>
-
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                </a>
-
-
-
-                <a href="https://github.com/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="contact-card">
-
-                    <span class="contact-icon">
-
-                        <i class="fa-brands fa-github"></i>
-
-                    </span>
-
-                    <span>
-
-                        <small>
-                            GITHUB
-                        </small>
-
-                        <strong>
-                            github.com/yourusername
-                        </strong>
-
-                    </span>
-
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                </a>
-
-
-
-                <a href="https://www.linkedin.com/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="contact-card">
-
-                    <span class="contact-icon">
-
-                        <i class="fa-brands fa-linkedin-in"></i>
-
-                    </span>
-
-                    <span>
-
-                        <small>
-                            LINKEDIN
-                        </small>
-
-                        <strong>
-                            Connect with me
-                        </strong>
-
-                    </span>
-
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                </a>
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-
-<!-- =========================================================
-     FINAL CTA
-========================================================== -->
-
-<section class="final-cta">
-
-    <div class="container">
-
-        <div class="cta-content">
+            <h3>
+              AI Learning Lab
+            </h3>
 
             <p>
-                THE JOURNEY IS JUST BEGINNING.
+              A collection of experiments and learning projects
+              exploring artificial intelligence, machine
+              learning and data-driven applications.
             </p>
 
-            <h2>
-                Watch this space<span>.</span>
-            </h2>
+            <div class="tech">
+              <span>Python</span>
+              <span>AI</span>
+              <span>Data</span>
+            </div>
 
-            <a href="#home"
-               class="back-top">
-
-                Back to top
-
-                <i class="fa-solid fa-arrow-up"></i>
-
+            <a
+              href="https://github.com/Nawaz-28"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+            >
+              View GitHub →
             </a>
 
+          </article>
+
+
+          <!-- PROJECT 03 -->
+
+          <article class="project reveal">
+
+            <div class="project-number">
+              PROJECT 03
+            </div>
+
+            <h3>
+              Coming Soon
+            </h3>
+
+            <p>
+              A new project is currently being explored.
+              Check back later to see what I'm building next.
+            </p>
+
+            <div class="tech">
+              <span>Innovation</span>
+              <span>Learning</span>
+              <span>Building</span>
+            </div>
+
+            <a
+              href="https://github.com/Nawaz-28"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link"
+            >
+              Follow my GitHub →
+            </a>
+
+          </article>
+
         </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         JOURNEY
+    ====================================================== -->
+
+    <section id="journey">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            04 — Journey
+          </div>
+
+          <h2 class="section-title">
+            My learning
+            <span class="gradient-text">
+              journey.
+            </span>
+          </h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+          <div class="timeline-item reveal">
+
+            <span class="timeline-dot"></span>
+
+            <div class="timeline-year">
+              2026 — Present
+            </div>
+
+            <h3>
+              B.Tech — AI & Data Science
+            </h3>
+
+            <p>
+              Dhaanish College of Engineering
+            </p>
+
+          </div>
+
+
+          <div class="timeline-item reveal">
+
+            <span class="timeline-dot"></span>
+
+            <div class="timeline-year">
+              Current Focus
+            </div>
+
+            <h3>
+              Programming & Web Development
+            </h3>
+
+            <p>
+              Developing strong programming fundamentals while
+              building interactive websites and practical projects.
+            </p>
+
+          </div>
+
+
+          <div class="timeline-item reveal">
+
+            <span class="timeline-dot"></span>
+
+            <div class="timeline-year">
+              Next Chapter
+            </div>
+
+            <h3>
+              Artificial Intelligence & Machine Learning
+            </h3>
+
+            <p>
+              Exploring machine learning, data analysis and
+              intelligent applications.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         GITHUB
+    ====================================================== -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="github-card reveal">
+
+          <div class="section-label">
+            Open Source
+          </div>
+
+          <h2>
+            Explore my
+            <span class="gradient-text">
+              GitHub.
+            </span>
+          </h2>
+
+          <p>
+            Follow my coding journey, experiments, projects
+            and everything I'm learning along the way.
+          </p>
+
+          <a
+            href="https://github.com/Nawaz-28"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            Visit GitHub ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section id="contact">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            05 — Contact
+          </div>
+
+          <h2 class="section-title">
+            Let's connect.
+          </h2>
+
+          <p class="section-description">
+            Whether it's technology, projects, collaboration
+            or just a conversation about AI and development,
+            feel free to connect.
+          </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+          <div class="glass-card reveal">
+
+            <h3>
+              Find me online
+            </h3>
+
+            <p>
+              Connect with me through my professional profiles.
+            </p>
+
+
+            <div class="contact-links">
+
+              <a
+                class="contact-link"
+                href="https://www.linkedin.com/in/nawaz-a-0600b8433"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <div class="contact-icon">
+                  in
+                </div>
+
+                <div>
+                  <strong>LinkedIn</strong>
+                  <small>Professional profile</small>
+                </div>
+
+              </a>
+
+
+              <a
+                class="contact-link"
+                href="https://github.com/Nawaz-28"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <div class="contact-icon">
+                  GH
+                </div>
+
+                <div>
+                  <strong>GitHub</strong>
+                  <small>Projects & code</small>
+                </div>
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div class="glass-card reveal">
+
+            <h3>
+              Send a message
+            </h3>
+
+            <form id="contactForm">
+
+              <input
+                type="text"
+                placeholder="Your name"
+                required
+              />
+
+              <input
+                type="email"
+                placeholder="Your email"
+                required
+              />
+
+              <textarea
+                placeholder="Your message..."
+                required
+              ></textarea>
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                Send Message →
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <p>
+        © <span id="year"></span> Nawaz A. All rights reserved.
+      </p>
+
+      <div class="footer-socials">
+
+        <a
+          href="https://github.com/Nawaz-28"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/nawaz-a-0600b8433"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+
+      </div>
 
     </div>
 
-</section>
+  </footer>
 
 
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
 
-</main>
+  <script>
 
+    /* =====================================================
+       TYPING ANIMATION
+    ====================================================== */
 
+    const typingText = document.getElementById("typingText");
 
+    const words = [
+      "B.Tech AI & Data Science Student",
+      "Aspiring AI Developer",
+      "Technology Enthusiast",
+      "Developer in Progress",
+      "Future AI Engineer"
+    ];
 
-<!-- =========================================================
-     FOOTER
-========================================================== -->
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-<footer class="site-footer">
+    function typeEffect() {
 
-    <div class="container">
+      const currentWord = words[wordIndex];
 
-        <div class="footer-inner">
+      if (!deleting) {
 
+        typingText.textContent =
+          currentWord.substring(0, charIndex + 1);
 
-            <div class="footer-brand">
+        charIndex++;
 
-                <a href="#home"
-                   class="logo">
+        if (charIndex === currentWord.length) {
 
-                    <span class="logo-mark">
-                        N
-                    </span>
+          deleting = true;
 
-                    <span class="logo-text">
-                        Nawaz<span>.</span>
-                    </span>
+          setTimeout(typeEffect, 1600);
 
-                </a>
+          return;
+        }
 
-                <p>
-                    B.Tech AI & Data Science Student
-                </p>
+      } else {
 
-            </div>
+        typingText.textContent =
+          currentWord.substring(0, charIndex - 1);
 
+        charIndex--;
 
+        if (charIndex === 0) {
 
-            <div class="footer-links">
+          deleting = false;
 
-                <a href="#about">
-                    About
-                </a>
+          wordIndex =
+            (wordIndex + 1) % words.length;
 
-                <a href="#skills">
-                    Skills
-                </a>
+        }
 
-                <a href="#projects">
-                    Projects
-                </a>
+      }
 
-                <a href="#contact">
-                    Contact
-                </a>
+      setTimeout(
+        typeEffect,
+        deleting ? 45 : 75
+      );
+    }
 
-            </div>
-
-
-
-            <div class="footer-socials">
-
-                <a href="https://github.com/"
-                   target="_blank"
-                   rel="noopener noreferrer">
-
-                    <i class="fa-brands fa-github"></i>
-
-                </a>
-
-                <a href="https://www.linkedin.com/"
-                   target="_blank"
-                   rel="noopener noreferrer">
-
-                    <i class="fa-brands fa-linkedin-in"></i>
-
-                </a>
-
-                <a href="mailto:yourmail@gmail.com">
-
-                    <i class="fa-regular fa-envelope"></i>
-
-                </a>
-
-            </div>
+    typeEffect();
 
 
-        </div>
+    /* =====================================================
+       MOBILE MENU
+    ====================================================== */
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+
+      navLinks.classList.toggle("open");
+
+    });
 
 
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach(link => {
 
-        <div class="footer-bottom">
+        link.addEventListener("click", () => {
 
-            <p>
-                © <span id="currentYear"></span> Nawaz.
-                Built with curiosity & code.
-            </p>
+          navLinks.classList.remove("open");
 
-            <p>
-                Hosted with GitHub Pages
-            </p>
+        });
 
-        </div>
-
-    </div>
-
-</footer>
+      });
 
 
+    /* =====================================================
+       DARK / LIGHT MODE
+    ====================================================== */
+
+    const themeBtn =
+      document.getElementById("themeBtn");
+
+    themeBtn.addEventListener("click", () => {
+
+      document.body.classList.toggle("light");
+
+      const isLight =
+        document.body.classList.contains("light");
+
+      themeBtn.textContent =
+        isLight ? "☾" : "☀";
+
+      localStorage.setItem(
+        "portfolio-theme",
+        isLight ? "light" : "dark"
+      );
+
+    });
 
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================== -->
+    if (
+      localStorage.getItem("portfolio-theme")
+      === "light"
+    ) {
 
-<script src="script.js"></script>
+      document.body.classList.add("light");
 
+      themeBtn.textContent = "☾";
+
+    }
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ====================================================== */
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("show");
+
+              observer.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: .12
+        }
+      );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(element => {
+
+        observer.observe(element);
+
+      });
+
+
+    /* =====================================================
+       CUSTOM CURSOR
+    ====================================================== */
+
+    const cursor =
+      document.querySelector(".cursor");
+
+    document.addEventListener(
+      "mousemove",
+      event => {
+
+        cursor.style.left =
+          event.clientX + "px";
+
+        cursor.style.top =
+          event.clientY + "px";
+
+      }
+    );
+
+
+    document
+      .querySelectorAll("a, button, .skill, .project")
+      .forEach(element => {
+
+        element.addEventListener(
+          "mouseenter",
+          () => cursor.classList.add("active")
+        );
+
+        element.addEventListener(
+          "mouseleave",
+          () => cursor.classList.remove("active")
+        );
+
+      });
+
+
+    /* =====================================================
+       3D PROFILE CARD
+    ====================================================== */
+
+    const profileCard =
+      document.getElementById("profileCard");
+
+    profileCard.addEventListener(
+      "mousemove",
+      event => {
+
+        if (window.innerWidth < 800) return;
+
+        const rect =
+          profileCard.getBoundingClientRect();
+
+        const x =
+          event.clientX - rect.left;
+
+        const y =
+          event.clientY - rect.top;
+
+        const centerX =
+          rect.width / 2;
+
+        const centerY =
+          rect.height / 2;
+
+        const rotateX =
+          ((y - centerY) / centerY) * -6;
+
+        const rotateY =
+          ((x - centerX) / centerX) * 6;
+
+        profileCard.style.transform =
+          `perspective(900px)
+           rotateX(${rotateX}deg)
+           rotateY(${rotateY}deg)
+           scale(1.02)`;
+
+      }
+    );
+
+
+    profileCard.addEventListener(
+      "mouseleave",
+      () => {
+
+        profileCard.style.transform =
+          "perspective(900px) rotateX(0) rotateY(0) scale(1)";
+
+      }
+    );
+
+
+    /* =====================================================
+       CONTACT FORM
+    ====================================================== */
+
+    const contactForm =
+      document.getElementById("contactForm");
+
+    contactForm.addEventListener(
+      "submit",
+      event => {
+
+        event.preventDefault();
+
+        alert(
+          "Thanks for reaching out! 🚀\n\n" +
+          "This demo form is ready to be connected " +
+          "to your email service."
+        );
+
+        contactForm.reset();
+
+      }
+    );
+
+
+    /* =====================================================
+       CURRENT YEAR
+    ====================================================== */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
 
 </body>
-
 </html>
 ```
